@@ -3,8 +3,8 @@ import joblib
 from model.masking import mask_pii
 
 # Load model and vectorizer
-model = joblib.load("model/classifier.pkl")
-vectorizer = joblib.load("model/vectorizer.pkl")
+model = joblib.load("classifier.pkl")
+vectorizer = joblib.load("tfidf_vectorizer.pkl")
 
 # Streamlit UI
 st.title("📧 Email Classifier with PII Masking")
