@@ -1,10 +1,5 @@
 import streamlit as st
-import joblib
-from model.masking import mask_pii
-
-# Load model and vectorizer
-model = joblib.load("classifier.pkl")
-vectorizer = joblib.load("tfidf_vectorizer.pkl")
+from model import predict_email_category
 
 # Streamlit UI
 st.title("📧 Email Classifier with PII Masking")
@@ -16,10 +11,10 @@ if st.button("Classify Email"):
     if not email_text.strip():
         st.warning("Please enter some text.")
     else:
-        masked_email = mask_pii(email_text)
-        features = vectorizer.transform([masked_email])
-        prediction = model.predict(features)[0]
+        # Call the function from model.py to classify the email
+        masked_email, prediction = predict_email_category(email_text)
 
+        # Display the masked email and prediction result
         st.subheader("🔒 Masked Email")
         st.write(masked_email)
 
